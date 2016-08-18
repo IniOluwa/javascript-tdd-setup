@@ -122,6 +122,6 @@ describe("Notes application executes search", function() {
         note0 = note.createNote("IniOluwa", "The sixth note.");
         note1 = note.createNote("IniOluwa", "The seventh note.");
         note2 = note.createNote("IniOluwa", "The eigth note.");
-        assert(note.searchNotes !== null);
+        assert(note.searchNotes('The') !== null);
     });
 });
