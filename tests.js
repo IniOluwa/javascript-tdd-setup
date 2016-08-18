@@ -20,8 +20,8 @@ describe("Notes application increments number of notes as notes are added", func
         var note = new NotesApplication();
         assert(note.noteContents.length === 0);
         var note0 = note.createNote("IniOluwa", "The second note.");
-        assert(noteapp.noteContents.length === 1);
-        note.createNote("IniOluwa", "The other second note.");
+        assert(note.noteContents.length === 1);
+        var note1 = note.createNote("IniOluwa", "The other second note.");
         assert(note.noteContents.length === 2);
     });
 });
@@ -49,7 +49,7 @@ describe("Notes application's 'get' returns error message after inputting unavai
         var note0 = note.createNote("IniOluwa", "The fifth note.");
         assert(note.noteContents[0] !== null);
         assert(note.getNote(0) !== null);
-        assert(note.getNote(1) === 'Input valid note ID.');
+        assert(note.getNote(1) === 'Input a valid note ID.');
     });
 });
 
@@ -71,7 +71,7 @@ describe("Notes application list returns all notes", function() {
 describe("Notes application checks all notes are stored in an array", function() {
     it("confirm notes in array", function() {
         var note = new NotesApplication();
-        assert(note.noteContents === typeof(object));
+        assert(typeof(note.noteContents) === 'object');
         assert(note.noteContents.length === 0);
         var note0 = note.createNote("IniOluwa", "The eleventh note.");
         assert(note.noteContents.length === 1);
@@ -80,14 +80,16 @@ describe("Notes application checks all notes are stored in an array", function()
     });
 });
 
-
 describe("Notes application edites note", function() {
     it("edits already created note", function() {
         var note = new NotesApplication();
         var note0 = note.createNote("IniOluwa", "The twelveth note.");
-        assert(note.noteContents.length === 1);
+        var note1 = note.createNote("IniOluwa", "The other twelveth note.");
+        assert(note.noteContents.length === 2);
         note.editNote(0, "The edited twelveth note.");
-        assert(note.thisContents[0].notes === "The edited twelveth note.");
+        note.editNote(1, "The edited other twelveth note.");
+        assert(note.noteContents[0].notes === "The edited twelveth note.");
+        assert(note.noteContents[1].notes === "The edited other twelveth note.");
     });
 });
 
@@ -105,7 +107,7 @@ describe("Notes application deletes note", function() {
         assert(note.noteContents.length === 1);
         note.deleteNote(0);
         assert(note.noteContents[0] === null);
-        assert(note.noteContents.length === 0);
+        assert(note.noteContents.length === 1);
     });
 });
 
